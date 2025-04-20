@@ -15,6 +15,7 @@ return {
 				"jsonls",
         "gopls",
 				"pyright",
+        "zls"
 			},
 		})
 

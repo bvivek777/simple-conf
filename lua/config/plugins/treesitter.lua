@@ -35,6 +35,7 @@ return {
                 "c",
                 "rust",
                 "go",
+                "zig",
             },
             incremental_selection = {
                 enable = true,

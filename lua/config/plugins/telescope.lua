@@ -12,7 +12,7 @@ return {
         vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})
 
        vim.keymap.set('n', '<leader>ff', function()
-            builtin.grep_string({ search = vim.fn.input("Grep > ") })
+            builtin.grep_string({ search = vim.fn.input("Find > ") })
         end) 
     end,
 }

@@ -3,7 +3,7 @@ return {
 	event = { "BufReadPre", "BufNewFile" },
 	dependencies = {
 		"hrsh7th/cmp-nvim-lsp",
-		{ "folke/neodev.nvim", opts = {} },
+		{ "folke/lazydev.nvim", opts = {} },
 	},
 	config = function()
 		local nvim_lsp = require("lspconfig")
@@ -28,6 +28,7 @@ return {
       vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
       vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts)
       vim.keymap.set('n', 'sig', vim.lsp.buf.signature_help, opts) 
+
 		end
 
 		local capabilities = require("cmp_nvim_lsp").default_capabilities()
