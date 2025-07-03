@@ -13,6 +13,7 @@ require("lazy").setup(
   },
   {
     checker = { enabled = true, notify = true },
-    change_detections = { notify = true }
+    change_detections = { notify = true },
+    lockfile = vim.fn.stdpath("config") .. "/lazy-lock.json"
   }
 )

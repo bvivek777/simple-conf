@@ -33,42 +33,44 @@ return {
 
 		local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
-		mason_lspconfig.setup_handlers({
-			function(server)
-				nvim_lsp[server].setup({
-					capabilities = capabilities,
-				})
-			end,  
-			["cssls"] = function()
-				nvim_lsp["cssls"].setup({
-					on_attach = on_attach,
-					capabilities = capabilities,
-				})
-			end,
-			["gopls"] = function()
-				nvim_lsp["gopls"].setup({
-					on_attach = on_attach,
-					capabilities = capabilities,
-				})
-			end,
-			["html"] = function()
-				nvim_lsp["html"].setup({
-					on_attach = on_attach,
-					capabilities = capabilities,
-				})
-			end,
-			["jsonls"] = function()
-				nvim_lsp["jsonls"].setup({
-					on_attach = on_attach,
-					capabilities = capabilities,
-				})
-			end,
-			["pyright"] = function()
-				nvim_lsp["pyright"].setup({
-					on_attach = on_attach,
-					capabilities = capabilities,
-				})
-			end,
-		})
-	end,
+    local lspconfig = require("lspconfig")
+    lspconfig.gopls.setup({
+        on_attach = on_attach,
+        capabilities = capabilities,
+        settings = {
+            gopls = {
+              ["ui.inlayhint.hints"] = {
+                compositeLiteralFields = true,
+                constantValues = true,
+                parameterNames = true,
+              },
+            },
+        },
+    })
+    
+    lspconfig.pyright.setup({
+        on_attach = on_attach,
+        capabilities = capabilities,
+    })
+
+    lspconfig.jsonls.setup({
+        on_attach = on_attach,
+        capabilities = capabilities,
+    })
+
+    lspconfig.cssls.setup({
+        on_attach = on_attach,
+        capabilities = capabilities,
+    })
+
+    lspconfig.html.setup({
+        on_attach = on_attach,
+        capabilities = capabilities,
+    })
+
+    require("mason").setup()
+    mason_lspconfig.setup()
+  end
 }
+
+
