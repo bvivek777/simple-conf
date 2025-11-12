@@ -17,7 +17,7 @@ package="python$version-venv"
 
 echo "Detected Python version $version"
 echo "Installing $package"
-apt install -y $package
+pacman -S $package
 
 echo "Installing Ripgrep"
-apt install -y ripgrep
+pacman -S ripgrep

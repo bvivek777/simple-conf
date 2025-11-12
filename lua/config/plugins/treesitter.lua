@@ -4,9 +4,11 @@ return {
     build = ":TSUpdate",
     dependencies = {
         "windwp/nvim-ts-autotag",
+        "HiPhish/rainbow-delimiters.nvim",
     },
     config = function()
         local treesitter = require("nvim-treesitter.configs")
+        local ok, rainbow_delimiters = pcall(require, "rainbow-delimiters")
 
         treesitter.setup({
             highlight = {
@@ -46,16 +48,32 @@ return {
                     node_decremental = "<bs>",
                 },
             },
-            rainbow = {
-                enable = true,
-                disable = { "html" },
-                extended_mode = false,
-                max_file_lines = nil,
-            },
             context_commentstring = {
                 enable = true,
                 enable_autocmd = false,
             },
         })
+
+        if ok then
+            vim.g.rainbow_delimiters = {
+                strategy = {
+                    [""] = rainbow_delimiters.strategy["global"],
+                    vim = rainbow_delimiters.strategy["local"],
+                },
+                query = {
+                    [""] = "rainbow-delimiters",
+                    lua = "rainbow-blocks",
+                },
+                highlight = {
+                    "RainbowDelimiterRed",
+                    "RainbowDelimiterYellow",
+                    "RainbowDelimiterBlue",
+                    "RainbowDelimiterOrange",
+                    "RainbowDelimiterGreen",
+                    "RainbowDelimiterViolet",
+                    "RainbowDelimiterCyan",
+                },
+            }
+        end
     end,
 }
