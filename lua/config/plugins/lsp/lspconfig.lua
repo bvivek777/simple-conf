@@ -6,7 +6,6 @@ return {
     { "folke/lazydev.nvim", opts = {} },
   },
   config = function()
-    local lspconfig = require("lspconfig")
     local capabilities = require("cmp_nvim_lsp").default_capabilities()
     local format_group = vim.api.nvim_create_augroup("LspFormat", { clear = false })
 
@@ -30,16 +29,11 @@ return {
     end
 
     local function setup(server, config)
-      local server_config = lspconfig[server]
-      if not server_config then
-        vim.notify(string.format("lspconfig: server '%s' is not available", server), vim.log.levels.WARN)
-        return
-      end
-
-      server_config.setup(vim.tbl_deep_extend("force", {
+      vim.lsp.config(server, vim.tbl_deep_extend("force", {
         capabilities = capabilities,
         on_attach = on_attach,
       }, config or {}))
+      vim.lsp.enable(server)
     end
 
     setup("gopls", {

@@ -5,8 +5,14 @@ return {
     dependencies = {
         "windwp/nvim-ts-autotag",
         "HiPhish/rainbow-delimiters.nvim",
+        "JoosepAlviste/nvim-ts-context-commentstring",
     },
     config = function()
+        vim.g.skip_ts_context_commentstring_module = true
+        require("ts_context_commentstring").setup({
+            enable_autocmd = false,
+        })
+
         local treesitter = require("nvim-treesitter.configs")
         local ok, rainbow_delimiters = pcall(require, "rainbow-delimiters")
 
@@ -47,10 +53,6 @@ return {
                     scope_incremental = false,
                     node_decremental = "<bs>",
                 },
-            },
-            context_commentstring = {
-                enable = true,
-                enable_autocmd = false,
             },
         })
 
