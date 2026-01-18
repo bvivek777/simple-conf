@@ -12,8 +12,8 @@ require("lazy").setup(
     { import = "config.plugins.lsp" }
   },
   {
-    checker = { enabled = true, notify = true },
-    change_detection = { notify = true },
+    checker = { enabled = false, notify = false },
+    change_detection = { notify = false },
     lockfile = vim.fn.stdpath("config") .. "/lazy-lock.json"
   }
 )
